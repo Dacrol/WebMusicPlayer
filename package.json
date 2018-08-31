@@ -1,0 +1,9 @@
+{
+  "name": "MusicPlayerB4",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Dacrol/MusicPlayerB4.git",
+  "author": "Dacrol <jonas.ahrens@gmail.com>",
+  "license": "NONE",
+  "private": true
+}
