@@ -5,5 +5,11 @@
   "repository": "git@github.com:Dacrol/MusicPlayerB4.git",
   "author": "Dacrol <jonas.ahrens@gmail.com>",
   "license": "NONE",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "live-server": "^1.2.0"
+  },
+  "scripts": {
+    "start": "live-server public"
+  }
 }
