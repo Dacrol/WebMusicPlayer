@@ -21,7 +21,9 @@ songs.forEach(song => {
       $('.progress-bar')
         .attr('aria-valuenow', progress)
         .css('width', Math.round(progress * 100 * 1000) / 1000 + '%')
-        $('.time-tracker').text(formatTime(this.currentTime) + ' / ' + formatTime(this.duration))
+      $('.time-tracker').text(
+        formatTime(this.currentTime) + ' / ' + formatTime(this.duration)
+      )
       // console.log(progress)
     })
 })
@@ -74,7 +76,7 @@ function pause() {
   $('.audio_' + playing)
     .get(0)
     .pause()
-    toggleButtons()
+  toggleButtons()
 }
 
 function toggleButtons() {
@@ -109,22 +111,23 @@ function nextPrev(prev = 1) {
   }
 }
 
-function switchViews () {
+function switchViews() {
   $('#left, #right').toggleClass(['d-none', 'd-flex'])
 }
 
-function formatTime (secs) {
-  var sec_num = parseInt(secs, 10); // don't forget the second param
-  var minutes = Math.floor(sec_num / 60);
-  var seconds = sec_num - (minutes * 60);
-
-  if (minutes < 10) {minutes = "0"+minutes;}
-  if (seconds < 10) {seconds = "0"+seconds;}
-  return minutes + ':' + seconds;
+function formatTime(secs) {
+  let sec_num = parseInt(secs, 10)
+  let minutes = Math.floor(sec_num / 60)
+  let seconds = sec_num - minutes * 60
+  if (minutes < 10) {
+    minutes = '0' + minutes
+  }
+  if (seconds < 10) {
+    seconds = '0' + seconds
+  }
+  return minutes + ':' + seconds
 }
 
-function reset () {
-  $('.audio_' + playing)
-    .get(0)
-    .currentTime = 0
+function reset() {
+  $('.audio_' + playing).get(0).currentTime = 0
 }

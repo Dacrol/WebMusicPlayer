@@ -14,66 +14,66 @@
 .song-cover-large img {
     position: absolute;
     height: 100%;
-    max-width: 100%; 
+    max-width: 100%;
 }
 
 body {
-  /* background-color: #222835; */
-  /* background: url('/bad_apple.jpg'); */
-  background-image: url('bad_apple.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #d6dee6;
-  overflow: hidden;
-  transition: color 1s linear;
+    /* background-color: #222835; */
+    /* background: url('/bad_apple.jpg'); */
+    background-image: url('bad_apple.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #d6dee6;
+    overflow: hidden;
+    transition: color 1s linear;
 }
 
 body::after {
-  content: "";
-  /* background: url(image.jpg); */
-  background-color: #222835;
-  opacity: 0.92;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;   
+    content: "";
+    /* background: url(image.jpg); */
+    background-color: #222835;
+    opacity: 0.96;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
 }
 
 .player-button:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 .player-button {
-  cursor: pointer;
-  transition: color 0.2s linear;
+    cursor: pointer;
+    transition: color 0.2s linear;
 }
 
 .song:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 .song {
-  cursor: pointer;
-  transition: color 0.2s linear;
+    cursor: pointer;
+    transition: color 0.2s linear;
 }
 
 .img-thumbnail {
-  background-color: #2d3444;
-  border: 1px solid #2025319c;
+    background-color: #2d3444;
+    border: 1px solid #2025319c;
 }
 
 .progress {
-  width: 50%;
+    width: 50%;
     background: #b4bdda3b;
 }
 
 .progress-bar {
-  width: 100%;
-  background-color: #4f7dde;
+    width: 100%;
+    background-color: #4f7dde;
 }
 
 .songs {
-  overflow-y: visible
+    overflow-y: visible;
 }
