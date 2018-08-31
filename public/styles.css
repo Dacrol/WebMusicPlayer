@@ -73,3 +73,7 @@ body::after {
   width: 100%;
   background-color: #4f7dde;
 }
+
+.songs {
+  overflow-y: visible
+}
