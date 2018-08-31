@@ -13,4 +13,45 @@
 
 .song-cover-large img {
     position: absolute;
+    height: 100%;
+    max-width: 100%; 
+}
+
+body {
+  /* background-color: #222835; */
+  /* background: url('/bad_apple.jpg'); */
+  background-image: url('bad_apple.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #e0e7ec;
+  overflow: hidden;
+}
+
+body::after {
+  content: "";
+  /* background: url(image.jpg); */
+  background-color: #222835;
+  opacity: 0.96;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+.player-button:hover {
+  color: #ffffff
+}
+
+.player-button {
+  cursor: pointer;
+}
+
+.song:hover {
+  color: #ffffff
+}
+
+.song {
+  cursor: pointer;
 }
