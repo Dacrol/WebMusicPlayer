@@ -25,6 +25,10 @@ songs.forEach(song => {
     })
 })
 
+$('.toggle-view').click(function(e) {
+  switchViews()
+})
+
 $('.song').click(function(e) {
   let song = $(this).attr('data-song')
   play(song)
@@ -97,4 +101,8 @@ function nextPrev(prev = 1) {
   } else {
     play(prev === 1 ? songs[0] : songs[songs.length - 1])
   }
+}
+
+function switchViews () {
+  $('#left, #right').toggleClass(['d-none', 'd-flex'])
 }
