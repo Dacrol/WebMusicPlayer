@@ -21,6 +21,7 @@ songs.forEach(song => {
       $('.progress-bar')
         .attr('aria-valuenow', progress)
         .css('width', Math.round(progress * 100 * 1000) / 1000 + '%')
+        $('.time-tracker').text(formatTime(this.currentTime) + ' / ' + formatTime(this.duration))
       // console.log(progress)
     })
 })
@@ -31,6 +32,7 @@ $('.toggle-view').click(function(e) {
 
 $('.song').click(function(e) {
   let song = $(this).attr('data-song')
+  reset()
   play(song)
   // console.log(song)
   $('.play-button').hide()
@@ -97,6 +99,7 @@ function updatePlaying(song) {
 }
 
 function nextPrev(prev = 1) {
+  reset()
   let index = songs.findIndex(song => song === playing)
   let next = songs[index + prev]
   if (next) {
@@ -118,4 +121,10 @@ function formatTime (secs) {
   if (minutes < 10) {minutes = "0"+minutes;}
   if (seconds < 10) {seconds = "0"+seconds;}
   return minutes + ':' + seconds;
+}
+
+function reset () {
+  $('.audio_' + playing)
+    .get(0)
+    .currentTime = 0
 }
