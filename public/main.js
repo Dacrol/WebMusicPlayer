@@ -2,8 +2,9 @@ const songs = ['bad_apple', 'fires_at_midnight', 'devil_trigger']
 
 let playing = songs[0]
 
-songs.forEach((song) => {
-  $('.songs').append(`<div class="song d-flex align-items-center pl-4 pr-4" data-song="${song}">
+songs.forEach(song => {
+  $('.songs')
+    .append(`<div class="song d-flex align-items-center pl-4 pr-4" data-song="${song}">
   <div class="song-cover">
     <img class="img-thumbnail" src="/${song}.jpg" alt="${titleCase(song)}">
   </div>
@@ -13,43 +14,58 @@ songs.forEach((song) => {
   </div>
   <audio class="audio_${song}" src="${song}.mp3" ></audio>
 </div>`)
+  $('.audio_' + song)
+    .get(0)
+    .addEventListener('timeupdate', function(e) {
+      let progress = this.currentTime / this.duration
+      $('.progress-bar')
+        .attr('aria-valuenow', progress)
+        .css('width', Math.round(progress * 100 * 1000) / 1000 + '%')
+      // console.log(progress)
+    })
 })
 
-$('.song').click(function (e) {
+$('.song').click(function(e) {
   let song = $(this).attr('data-song')
   play(song)
   console.log(song)
 })
 
-$('.play-button').click(function (e) { 
+$('.play-button').click(function(e) {
   e.preventDefault()
   play()
 })
 
-$('.pause-button').click(function (e) { 
+$('.pause-button').click(function(e) {
   e.preventDefault()
   pause()
   toggleButtons()
 })
 
-$('.next').click(function (e) {
+$('.next').click(function(e) {
   nextPrev()
 })
 
-$('.back').click(function (e) {
+$('.back').click(function(e) {
   nextPrev(-1)
 })
 
 function play(song = playing) {
-  $('.audio_' + playing).get(0).pause()
+  $('.audio_' + playing)
+    .get(0)
+    .pause()
   playing = song
   updatePlaying(song)
-  $('.audio_' + playing).get(0).play()
+  $('.audio_' + playing)
+    .get(0)
+    .play()
   toggleButtons()
 }
 
 function pause() {
-  $('.audio_' + playing).get(0).pause()
+  $('.audio_' + playing)
+    .get(0)
+    .pause()
 }
 
 function toggleButtons() {
@@ -58,11 +74,14 @@ function toggleButtons() {
 }
 
 function titleCase(str) {
-  let splitStr = str.replace(/_/g, ' ').toLowerCase().split(' ');
+  let splitStr = str
+    .replace(/_/g, ' ')
+    .toLowerCase()
+    .split(' ')
   for (let i = 0; i < splitStr.length; i++) {
-      splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1)
   }
-  return splitStr.join(' '); 
+  return splitStr.join(' ')
 }
 
 function updatePlaying(song) {
@@ -70,7 +89,7 @@ function updatePlaying(song) {
 }
 
 function nextPrev(prev = 1) {
-  let index = songs.findIndex((song) => song === playing)
+  let index = songs.findIndex(song => song === playing)
   let next = songs[index + prev]
   if (next) {
     play(next)

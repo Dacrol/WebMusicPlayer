@@ -63,3 +63,13 @@ body::after {
   background-color: #2d3444;
   border: 1px solid #2025319c;
 }
+
+.progress {
+  width: 50%;
+    background: #b4bdda3b;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #4f7dde;
+}
