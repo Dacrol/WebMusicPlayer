@@ -58,3 +58,8 @@ body::after {
   cursor: pointer;
   transition: color 0.2s linear;
 }
+
+.img-thumbnail {
+  background-color: #2d3444;
+  border: 1px solid #2025319c;
+}
