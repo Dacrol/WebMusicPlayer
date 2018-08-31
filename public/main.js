@@ -86,6 +86,7 @@ function titleCase(str) {
 
 function updatePlaying(song) {
   $('#current-song').prop('src', '/' + song + '.jpg')
+  $('body').css('background-image', `url('${song}.jpg')`)
 }
 
 function nextPrev(prev = 1) {
