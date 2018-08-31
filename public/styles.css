@@ -23,8 +23,9 @@ body {
   background-image: url('bad_apple.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  color: #e0e7ec;
+  color: #d6dee6;
   overflow: hidden;
+  transition: color 1s linear;
 }
 
 body::after {
@@ -41,17 +42,19 @@ body::after {
 }
 
 .player-button:hover {
-  color: #ffffff
+  color: #ffffff;
 }
 
 .player-button {
   cursor: pointer;
+  transition: color 0.2s linear;
 }
 
 .song:hover {
-  color: #ffffff
+  color: #ffffff;
 }
 
 .song {
   cursor: pointer;
+  transition: color 0.2s linear;
 }
