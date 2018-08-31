@@ -32,7 +32,9 @@ $('.toggle-view').click(function(e) {
 $('.song').click(function(e) {
   let song = $(this).attr('data-song')
   play(song)
-  console.log(song)
+  // console.log(song)
+  $('.play-button').hide()
+  $('.pause-button').show()
 })
 
 $('.play-button').click(function(e) {
@@ -43,7 +45,7 @@ $('.play-button').click(function(e) {
 $('.pause-button').click(function(e) {
   e.preventDefault()
   pause()
-  toggleButtons()
+  // toggleButtons()
 })
 
 $('.next').click(function(e) {
@@ -70,6 +72,7 @@ function pause() {
   $('.audio_' + playing)
     .get(0)
     .pause()
+    toggleButtons()
 }
 
 function toggleButtons() {
