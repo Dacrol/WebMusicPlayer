@@ -1,0 +1,16 @@
+.song-cover img {
+    object-fit: cover;
+    overflow: hidden;
+    height: 150px;
+    width : 150px;
+}
+
+.song-cover-large {
+    padding-bottom: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.song-cover-large img {
+    position: absolute;
+}
