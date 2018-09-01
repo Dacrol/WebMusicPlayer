@@ -1,4 +1,4 @@
-const songs = ['bad_apple', 'fires_at_midnight', 'devil_trigger']
+const songs = ['bad_apple', 'bad_apple', 'bad_apple', 'bad_apple', 'bad_apple', 'bad_apple', 'bad_apple']
 
 let playing = songs[0]
 
