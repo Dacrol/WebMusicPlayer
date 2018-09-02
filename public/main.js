@@ -1,5 +1,7 @@
-let songs = [{file: 'bad_apple', title: 'Bad Apple', artist: 'Nomico'},
-{file: 'monody', title: 'Monody', artist: 'TheFatRat feat. Laura Brehm'}]
+let songs = [
+  { file: 'bad_apple', title: 'Bad Apple', artist: 'Nomico' },
+  { file: 'monody', title: 'Monody', artist: 'TheFatRat feat. Laura Brehm' }
+]
 
 songs = [...songs, ...songs, ...songs]
 console.log(songs)
@@ -7,9 +9,13 @@ let playing = songs[0].file
 
 songs.forEach(song => {
   $('.songs')
-    .append(`<div class="song d-flex align-items-center pl-4" data-song="${song.file}">
+    .append(`<div class="song d-flex align-items-center pl-4" data-song="${
+    song.file
+  }">
   <div class="song-cover">
-    <img class="img-thumbnail" src="/${song.file}.jpg" alt="${titleCase(song.title)}">
+    <img class="img-thumbnail" src="/${song.file}.jpg" alt="${titleCase(
+    song.title
+  )}">
   </div>
   <div class="flex-fill song-title pl-4">
   <div>${titleCase(song.title)}</div>
@@ -82,12 +88,12 @@ function play(song = playing, startPlaying = true) {
   $('.song-title-right').text(songData.title)
   $('.song-artist-right').text(songData.artist)
   updatePlaying(song)
-  if (startPlaying){
-  $('.audio_' + playing)
-    .get(0)
-    .play()
-  toggleButtons()
-}
+  if (startPlaying) {
+    $('.audio_' + playing)
+      .get(0)
+      .play()
+    toggleButtons()
+  }
 }
 
 function pause() {
