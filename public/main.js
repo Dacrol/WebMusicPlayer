@@ -43,7 +43,11 @@ songs.forEach(song => {
 // Hides scrollbar:
 const scrollable = $('.hide-scroll').get(0)
 scrollable.style.paddingRight =
-  ((scrollable.offsetWidth - scrollable.clientWidth) > 10 ? scrollable.offsetWidth - scrollable.clientWidth : 20) + 20 + 'px'
+  (scrollable.offsetWidth - scrollable.clientWidth > 10
+    ? scrollable.offsetWidth - scrollable.clientWidth
+    : 20) +
+  20 +
+  'px'
 
 play(playing, false)
 
@@ -68,7 +72,6 @@ $('.play-button').click(function(e) {
 $('.pause-button').click(function(e) {
   e.preventDefault()
   pause()
-  // toggleButtons()
 })
 
 $('.next').click(function(e) {
@@ -80,11 +83,17 @@ $('.back').click(function(e) {
 })
 
 function play(song = playing, startPlaying = true) {
+  let songData
+  if (typeof song === 'string') {
+    songData = songs.find(data => data.file === song)
+  } else {
+    songData = song
+    song = songData.file
+  }
   $('.audio_' + playing)
     .get(0)
     .pause()
   playing = song
-  const songData = songs.find(data => data.file === song)
   $('.song-title-right').text(songData.title)
   $('.song-artist-right').text(songData.artist)
   updatePlaying(song)
@@ -92,7 +101,7 @@ function play(song = playing, startPlaying = true) {
     $('.audio_' + playing)
       .get(0)
       .play()
-    toggleButtons()
+    showPause()
   }
 }
 
@@ -100,12 +109,7 @@ function pause() {
   $('.audio_' + playing)
     .get(0)
     .pause()
-  toggleButtons()
-}
-
-function toggleButtons() {
-  $('.pause-button').toggle()
-  $('.play-button').toggle()
+  showPlay()
 }
 
 function titleCase(str) {
@@ -125,13 +129,13 @@ function updatePlaying(song) {
 }
 
 function nextPrev(prev = 1) {
-  reset()
-  let index = songs.findIndex(song => song === playing)
+  stop()
+  let index = songs.findIndex(song => song.file === playing)
   let next = songs[index + prev]
   if (next) {
-    play(next)
+    play(next.file)
   } else {
-    play(prev === 1 ? songs[0] : songs[songs.length - 1])
+    play(prev === 1 ? songs[0].file : songs[songs.length - 1].file)
   }
 }
 
@@ -154,4 +158,19 @@ function formatTime(secs) {
 
 function reset() {
   $('.audio_' + playing).get(0).currentTime = 0
+}
+
+function stop() {
+  reset()
+  showPlay()
+}
+
+function showPlay() {
+  $('.play-button').show()
+  $('.pause-button').hide()
+}
+
+function showPause() {
+  $('.play-button').hide()
+  $('.pause-button').show()
 }
