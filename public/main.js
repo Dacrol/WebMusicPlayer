@@ -43,7 +43,7 @@ songs.forEach(song => {
 // Hides scrollbar:
 const scrollable = $('.hide-scroll').get(0)
 scrollable.style.paddingRight =
-  scrollable.offsetWidth - scrollable.clientWidth + 20 + 'px'
+  ((scrollable.offsetWidth - scrollable.clientWidth) > 10 ? scrollable.offsetWidth - scrollable.clientWidth : 20) + 20 + 'px'
 
 play(playing, false)
 
