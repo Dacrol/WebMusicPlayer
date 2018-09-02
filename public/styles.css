@@ -1,3 +1,6 @@
+
+/* @import url('https://unpkg.com/normalize.css@8.0.0/'); */
+
 .song-cover img {
     object-fit: cover;
     overflow: hidden;
@@ -14,7 +17,7 @@
 .song-cover-large img {
     position: absolute;
     height: 100%;
-    max-width: 100%;
+    /* max-width: 100%; */
 }
 
 body {
