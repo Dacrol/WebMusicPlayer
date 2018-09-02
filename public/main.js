@@ -2,9 +2,10 @@ const songs = ['bad_apple', 'bad_apple', 'bad_apple', 'bad_apple', 'bad_apple', 
 
 let playing = songs[0]
 
+
 songs.forEach(song => {
   $('.songs')
-    .append(`<div class="song d-flex align-items-center pl-4 pr-4" data-song="${song}">
+    .append(`<div class="song d-flex align-items-center pl-4" data-song="${song}">
   <div class="song-cover">
     <img class="img-thumbnail" src="/${song}.jpg" alt="${titleCase(song)}">
   </div>
@@ -27,6 +28,9 @@ songs.forEach(song => {
       // console.log(progress)
     })
 })
+
+const scrollable = $('.hide-scroll').get(0)
+scrollable.style.paddingRight = scrollable.offsetWidth - scrollable.clientWidth + 20 + 'px'
 
 $('.toggle-view').click(function(e) {
   switchViews()

@@ -24,7 +24,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     color: #d6dee6;
-    /* overflow: hidden; */
+    overflow: hidden;
     transition: color 1s linear;
 }
 
@@ -74,10 +74,14 @@ body::after {
     background-color: #4f7dde;
 }
 
-#right {
+.scroll-wrapper {
   overflow: hidden;
 }
 
 .songs {
-    overflow-y: scroll;
+  width: 100%;
+  overflow: auto;
+  box-sizing: content-box;
+  padding-right: 34px;
 }
+
