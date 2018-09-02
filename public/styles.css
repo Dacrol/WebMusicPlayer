@@ -70,7 +70,7 @@ body::after {
 }
 
 .progress {
-    width: 50%;
+    width: 66%;
     background: #b4bdda3b;
 }
 
@@ -90,3 +90,6 @@ body::after {
     padding-right: 34px;
 }
 
+.fa-1point5 {
+  font-size: 1.5em;
+}
