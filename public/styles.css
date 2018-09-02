@@ -78,13 +78,13 @@ body::after {
 }
 
 .scroll-wrapper {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .songs {
-  width: 100%;
-  overflow: auto;
-  box-sizing: content-box;
-  padding-right: 34px;
+    width: 100%;
+    overflow: auto;
+    box-sizing: content-box;
+    padding-right: 34px;
 }
 

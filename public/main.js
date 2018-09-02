@@ -1,7 +1,14 @@
-const songs = ['bad_apple', 'bad_apple', 'bad_apple', 'bad_apple', 'bad_apple', 'bad_apple', 'bad_apple']
+const songs = [
+  'bad_apple',
+  'bad_apple',
+  'bad_apple',
+  'bad_apple',
+  'bad_apple',
+  'bad_apple',
+  'bad_apple'
+]
 
 let playing = songs[0]
-
 
 songs.forEach(song => {
   $('.songs')
@@ -29,8 +36,10 @@ songs.forEach(song => {
     })
 })
 
+// Hides scrollbar:
 const scrollable = $('.hide-scroll').get(0)
-scrollable.style.paddingRight = scrollable.offsetWidth - scrollable.clientWidth + 20 + 'px'
+scrollable.style.paddingRight =
+  scrollable.offsetWidth - scrollable.clientWidth + 20 + 'px'
 
 $('.toggle-view').click(function(e) {
   switchViews()
