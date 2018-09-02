@@ -66,12 +66,7 @@ body::after {
 
 .img-thumbnail {
     background-color: #2d3444;
-}
-
-@media (min-width: 992px) {
-    .img-thumbnail {
-        border: 1px solid #2025319c;
-    }
+    border: 1px solid #2025319c;
 }
 
 .progress {
