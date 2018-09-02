@@ -14,7 +14,6 @@ songs.forEach(song => {
   <div class="flex-fill song-title pl-4">
   <div>${titleCase(song.title)}</div>
   <div><small class="text-muted">${song.artist}</small></div>
-
   </div>
   <div class="play-icon">
     <i class="fas fa-play-circle" aria-hidden="true"></i>
@@ -39,6 +38,8 @@ songs.forEach(song => {
 const scrollable = $('.hide-scroll').get(0)
 scrollable.style.paddingRight =
   scrollable.offsetWidth - scrollable.clientWidth + 20 + 'px'
+
+play(playing, false)
 
 $('.toggle-view').click(function(e) {
   switchViews()
@@ -72,16 +73,21 @@ $('.back').click(function(e) {
   nextPrev(-1)
 })
 
-function play(song = playing) {
+function play(song = playing, startPlaying = true) {
   $('.audio_' + playing)
     .get(0)
     .pause()
   playing = song
+  const songData = songs.find(data => data.file === song)
+  $('.song-title-right').text(songData.title)
+  $('.song-artist-right').text(songData.artist)
   updatePlaying(song)
+  if (startPlaying){
   $('.audio_' + playing)
     .get(0)
     .play()
   toggleButtons()
+}
 }
 
 function pause() {
