@@ -15,9 +15,11 @@
 }
 
 .song-cover-large img {
+    object-position: center;
+    object-fit: cover;
     position: absolute;
     height: 100%;
-    /* max-width: 100%; */
+    max-width: 100%;
 }
 
 body {
