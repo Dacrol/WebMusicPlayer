@@ -1,28 +1,27 @@
-const songs = [
-  'bad_apple',
-  'monody',
-  'bad_apple',
-  'monody',
-  'bad_apple',
-  'monody',
-  'bad_apple'
-]
+let songs = [{file: 'bad_apple', title: 'Bad Apple', artist: 'Nomico'},
+{file: 'monody', title: 'Monody', artist: 'TheFatRat feat. Laura Brehm'}]
 
-let playing = songs[0]
+songs = [...songs, ...songs, ...songs]
+console.log(songs)
+let playing = songs[0].file
 
 songs.forEach(song => {
   $('.songs')
-    .append(`<div class="song d-flex align-items-center pl-4" data-song="${song}">
+    .append(`<div class="song d-flex align-items-center pl-4" data-song="${song.file}">
   <div class="song-cover">
-    <img class="img-thumbnail" src="/${song}.jpg" alt="${titleCase(song)}">
+    <img class="img-thumbnail" src="/${song.file}.jpg" alt="${titleCase(song.title)}">
   </div>
-  <div class="flex-fill song-title pl-4">${titleCase(song)}</div>
+  <div class="flex-fill song-title pl-4">
+  <div>${titleCase(song.title)}</div>
+  <div><small class="text-muted">${song.artist}</small></div>
+
+  </div>
   <div class="play-icon">
     <i class="fas fa-play-circle" aria-hidden="true"></i>
   </div>
-  <audio class="audio_${song}" src="${song}.mp3" ></audio>
+  <audio class="audio_${song.file}" src="${song.file}.mp3" ></audio>
 </div>`)
-  $('.audio_' + song)
+  $('.audio_' + song.file)
     .get(0)
     .addEventListener('timeupdate', function(e) {
       let progress = this.currentTime / this.duration
