@@ -1,10 +1,10 @@
 const songs = [
   'bad_apple',
+  'monody',
   'bad_apple',
+  'monody',
   'bad_apple',
-  'bad_apple',
-  'bad_apple',
-  'bad_apple',
+  'monody',
   'bad_apple'
 ]
 
