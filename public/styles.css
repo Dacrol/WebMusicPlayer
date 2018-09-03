@@ -12,6 +12,44 @@
     padding-bottom: 90%;
     overflow: hidden;
     position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 991px) {
+    .song-cover-large {
+        padding-bottom: 70%;
+    }
+}
+
+@media (max-height: 800px) and (max-width: 991px) {
+    .song-cover-large {
+        padding-bottom: 60%;
+    }
+}
+
+@media (max-height: 733px) and (max-width: 991px) {
+    .song-cover-large {
+        padding-bottom: 50%;
+    }
+}
+
+@media (max-height: 640px) and (max-width: 991px) {
+    .song-cover-large {
+        padding-bottom: 40%;
+    }
+}
+
+@media (max-height: 767px) and (min-width: 992px) {
+    .song-cover-large {
+        padding-bottom: 70%;
+    }
+}
+
+@media (max-height: 650px) and (min-width: 992px) {
+    .song-cover-large {
+        padding-bottom: 60%;
+    }
 }
 
 .song-cover-large img {
