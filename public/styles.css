@@ -172,3 +172,7 @@ a:hover {
     max-width: 60%;
     padding-right: 1rem;
 }
+
+.top-menu {
+  font-size: 1.2em;
+}
