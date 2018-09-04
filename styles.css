@@ -8,6 +8,11 @@
     width : 150px;
 }
 
+.song-cover {
+    /* width: 100%; */
+    min-width: fit-content;
+}
+
 .song-cover-large {
     padding-bottom: 90%;
     overflow: hidden;
@@ -66,6 +71,7 @@ body {
     background-image: url('bad_apple.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     color: #d6dee6;
     overflow: hidden;
     transition: color 1s linear;
@@ -165,4 +171,8 @@ a:hover {
 .song-title {
     max-width: 60%;
     padding-right: 1rem;
+}
+
+.top-menu {
+  font-size: 1.2em;
 }

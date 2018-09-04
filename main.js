@@ -155,13 +155,15 @@ function showPause() {
 
 function addToPlaylist(song) {
   if (!song.id) song.id = song.file.replace('.', '')
-  $(`<div class="song d-flex align-items-center pl-4" data-song="${song.id}">
+  $(`<div class="song d-flex justify-content-center align-items-center" data-song="${
+    song.id
+  }">
   <div class="song-cover">
     <img class="img-thumbnail" src="${song.image}" alt="${titleCase(
     song.title
   )}">
   </div>
-  <div class="flex-fill song-title pl-4">
+  <div class="flex-fill song-title pl-2">
   <div>${titleCase(song.title)}</div>
   <div>
   <small class="text-muted">${song.artist || ''}</small>
