@@ -16,7 +16,6 @@ let songs = [
 songs = [...songs, ...songs, ...songs]
 // console.log(songs)
 
-
 songs.forEach(addToPlaylist)
 
 let playing = songs[0].id
@@ -35,20 +34,12 @@ play(playing, false)
 $('#from-youtube').click(function(event) {
   event.preventDefault()
   let id = window.prompt('Enter ID')
-  console.log(id)
+  // console.log(id)
+  addFromYoutube(id)
 })
 
 $('.toggle-view').click(function(e) {
   switchViews()
-})
-
-$('.song').click(function(e) {
-  let song = $(this).attr('data-song')
-  reset()
-  play(song)
-  // console.log(song)
-  $('.play-button').hide()
-  $('.pause-button').show()
 })
 
 $('.play-button').click(function(e) {
@@ -111,7 +102,7 @@ function titleCase(str) {
 }
 
 function updatePlaying(song) {
-  $('#current-song').prop('src', '/' + song.image)
+  $('#current-song').prop('src', song.image)
   $('body').css('background-image', `url('${song.image}')`)
 }
 
@@ -164,10 +155,7 @@ function showPause() {
 
 function addToPlaylist(song) {
   if (!song.id) song.id = song.file.replace('.', '')
-  $('.songs')
-    .append(`<div class="song d-flex align-items-center pl-4" data-song="${
-    song.id
-  }">
+  $(`<div class="song d-flex align-items-center pl-4" data-song="${song.id}">
   <div class="song-cover">
     <img class="img-thumbnail" src="${song.image}" alt="${titleCase(
     song.title
@@ -184,6 +172,15 @@ function addToPlaylist(song) {
   </div>
   <audio class="audio_${song.id}" src="${song.file}"></audio>
 </div>`)
+    .appendTo('.songs')
+    .click(function(e) {
+      let song = $(this).attr('data-song')
+      reset()
+      play(song)
+      // console.log(song)
+      $('.play-button').hide()
+      $('.pause-button').show()
+    })
   $('.audio_' + song.id)
     .get(0)
     .addEventListener('timeupdate', function(e) {
@@ -196,4 +193,10 @@ function addToPlaylist(song) {
       )
       // console.log(progress)
     })
+}
+
+async function addFromYoutube(id) {
+  let audio = await getAudio(id)
+  songs.push(audio)
+  addToPlaylist(audio)
 }

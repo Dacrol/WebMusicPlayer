@@ -27,6 +27,7 @@ async function getAudio(id) {
     file: audio.url,
     image: image,
     title: youtubeTitle.length > 1 ? youtubeTitle[1] : youtubeTitle[0],
-    artist: youtubeTitle.length > 1 ? youtubeTitle[0] : undefined
+    artist: youtubeTitle.length > 1 ? youtubeTitle[0] : undefined,
+    id: id
   }
 }
