@@ -1,13 +1,25 @@
 let songs = [
-  { file: 'bad_apple', title: 'Bad Apple', artist: 'Nomico' },
-  { file: 'monody', title: 'Monody', artist: 'TheFatRat feat. Laura Brehm' }
+  {
+    file: 'bad_apple.mp3',
+    title: 'Bad Apple',
+    artist: 'Nomico',
+    image: 'bad_apple.jpg'
+  },
+  {
+    file: 'monody.mp3',
+    title: 'Monody',
+    artist: 'TheFatRat feat. Laura Brehm',
+    image: 'monody.jpg'
+  }
 ]
 
 songs = [...songs, ...songs, ...songs]
-console.log(songs)
-let playing = songs[0].file
+// console.log(songs)
+
 
 songs.forEach(addToPlaylist)
+
+let playing = songs[0].id
 
 // Hides scrollbar:
 /* const scrollable = $('.hide-scroll').get(0)
@@ -25,7 +37,6 @@ $('#from-youtube').click(function(event) {
   let id = window.prompt('Enter ID')
   console.log(id)
 })
-
 
 $('.toggle-view').click(function(e) {
   switchViews()
@@ -61,10 +72,10 @@ $('.back').click(function(e) {
 function play(song = playing, startPlaying = true) {
   let songData
   if (typeof song === 'string') {
-    songData = songs.find(data => data.file === song)
+    songData = songs.find(data => data.id === song)
   } else {
     songData = song
-    song = songData.file
+    song = songData.id
   }
   $('.audio_' + playing)
     .get(0)
@@ -72,7 +83,7 @@ function play(song = playing, startPlaying = true) {
   playing = song
   $('.song-title-right').text(songData.title)
   $('.song-artist-right').text(songData.artist)
-  updatePlaying(song)
+  updatePlaying(songData)
   if (startPlaying) {
     $('.audio_' + playing)
       .get(0)
@@ -100,18 +111,18 @@ function titleCase(str) {
 }
 
 function updatePlaying(song) {
-  $('#current-song').prop('src', '/' + song + '.jpg')
-  $('body').css('background-image', `url('${song}.jpg')`)
+  $('#current-song').prop('src', '/' + song.image)
+  $('body').css('background-image', `url('${song.image}')`)
 }
 
 function nextPrev(prev = 1) {
   stop()
-  let index = songs.findIndex(song => song.file === playing)
+  let index = songs.findIndex(song => song.id === playing)
   let next = songs[index + prev]
   if (next) {
-    play(next.file)
+    play(next.id)
   } else {
-    play(prev === 1 ? songs[0].file : songs[songs.length - 1].file)
+    play(prev === 1 ? songs[0].id : songs[songs.length - 1].id)
   }
 }
 
@@ -152,27 +163,28 @@ function showPause() {
 }
 
 function addToPlaylist(song) {
+  if (!song.id) song.id = song.file.replace('.', '')
   $('.songs')
     .append(`<div class="song d-flex align-items-center pl-4" data-song="${
-    song.file
+    song.id
   }">
   <div class="song-cover">
-    <img class="img-thumbnail" src="/${song.file}.jpg" alt="${titleCase(
+    <img class="img-thumbnail" src="${song.image}" alt="${titleCase(
     song.title
   )}">
   </div>
   <div class="flex-fill song-title pl-4">
   <div>${titleCase(song.title)}</div>
   <div>
-  <small class="text-muted">${song.artist}</small>
+  <small class="text-muted">${song.artist || ''}</small>
   </div>
   </div>
   <div class="play-icon">
     <i class="fas fa-play-circle" aria-hidden="true"></i>
   </div>
-  <audio class="audio_${song.file}" src="${song.file}.mp3" ></audio>
+  <audio class="audio_${song.id}" src="${song.file}"></audio>
 </div>`)
-  $('.audio_' + song.file)
+  $('.audio_' + song.id)
     .get(0)
     .addEventListener('timeupdate', function(e) {
       let progress = this.currentTime / this.duration
