@@ -13,6 +13,10 @@
     "live-server": "^1.2.0"
   },
   "scripts": {
-    "start": "live-server public"
+    "start": "live-server public",
+    "deploy": "gh-pages -d public"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.2.0"
   }
 }
