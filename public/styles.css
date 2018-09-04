@@ -161,3 +161,8 @@ a, a:visited, a:active, a:focus {
 a:hover {
     color: #ffffff;
 }
+
+.song-title {
+    max-width: 60%;
+    padding-right: 1rem;
+}
