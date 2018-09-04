@@ -100,6 +100,7 @@ body::after {
 .song {
     cursor: pointer;
     transition: color 0.2s linear;
+    width: 100%;
 }
 
 .img-thumbnail {
@@ -125,7 +126,7 @@ body::after {
     width: 100%;
     overflow: auto;
     box-sizing: content-box;
-    padding-right: 34px;
+    padding-right: 40px;
 }
 
 .fa-1point5 {
