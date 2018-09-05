@@ -75,10 +75,15 @@ function play(song = playing, startPlaying = true) {
   $('.song-title-right').text(songData.title)
   $('.song-artist-right').text(songData.artist)
   updatePlaying(songData)
+  const songElement = $('.audio_' + playing).get(0)
+  songElement.addEventListener('loadedmetadata', function() {
+    console.log(this)
+    $('.time-tracker').text(
+      formatTime(this.currentTime) + ' / ' + formatTime(this.duration)
+    )
+  })
   if (startPlaying) {
-    $('.audio_' + playing)
-      .get(0)
-      .play()
+    songElement.play()
     showPause()
   }
 }
@@ -183,21 +188,20 @@ function addToPlaylist(song) {
       $('.play-button').hide()
       $('.pause-button').show()
     })
-  const audioElement = $('.audio_' + song.id)
-    .get(0)
+  const audioElement = $('.audio_' + song.id).get(0)
   audioElement.addEventListener('timeupdate', function(e) {
-      let progress = this.currentTime / this.duration
-      $('.progress-bar')
-        .attr('aria-valuenow', progress)
-        .css('width', Math.round(progress * 100 * 1000) / 1000 + '%')
-      $('.time-tracker').text(
-        formatTime(this.currentTime) + ' / ' + formatTime(this.duration)
-      )
-      // console.log(progress)
-    })
-    audioElement.addEventListener('ended', function(e) {
-      nextPrev()
-    })
+    let progress = this.currentTime / this.duration
+    $('.progress-bar')
+      .attr('aria-valuenow', progress)
+      .css('width', Math.round(progress * 100 * 1000) / 1000 + '%')
+    $('.time-tracker').text(
+      formatTime(this.currentTime) + ' / ' + formatTime(this.duration)
+    )
+    // console.log(progress)
+  })
+  audioElement.addEventListener('ended', function(e) {
+    nextPrev()
+  })
 }
 
 async function addFromYoutube(id) {
