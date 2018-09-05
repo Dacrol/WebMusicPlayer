@@ -106,14 +106,14 @@ function updatePlaying(song) {
   $('body').css('background-image', `url('${song.image}')`)
 }
 
-function nextPrev(prev = 1) {
+function nextPrev(direction = 1) {
   stop()
   let index = songs.findIndex(song => song.id === playing)
-  let next = songs[index + prev]
+  let next = songs[index + direction]
   if (next) {
     play(next.id)
   } else {
-    play(prev === 1 ? songs[0].id : songs[songs.length - 1].id)
+    play(direction === 1 ? songs[0].id : songs[songs.length - 1].id)
   }
 }
 
@@ -183,9 +183,9 @@ function addToPlaylist(song) {
       $('.play-button').hide()
       $('.pause-button').show()
     })
-  $('.audio_' + song.id)
+  const audioElement = $('.audio_' + song.id)
     .get(0)
-    .addEventListener('timeupdate', function(e) {
+  audioElement.addEventListener('timeupdate', function(e) {
       let progress = this.currentTime / this.duration
       $('.progress-bar')
         .attr('aria-valuenow', progress)
@@ -194,6 +194,9 @@ function addToPlaylist(song) {
         formatTime(this.currentTime) + ' / ' + formatTime(this.duration)
       )
       // console.log(progress)
+    })
+    audioElement.addEventListener('ended', function(e) {
+      nextPrev()
     })
 }
 
