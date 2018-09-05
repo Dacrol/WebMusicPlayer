@@ -174,5 +174,6 @@ a:hover {
 }
 
 .top-menu {
-  font-size: 1.2em;
+    font-size: 1.2em;
+    min-height: 30px;
 }
