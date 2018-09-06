@@ -1,1 +1,1 @@
-Music player in Bootstrap 4
+Music player with persistent playlist that fetches audio from YouTube
