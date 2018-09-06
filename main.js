@@ -13,6 +13,8 @@ let songs = [
   }
 ]
 
+const state = { playing: false }
+
 // songs = [...songs, ...songs, ...songs]
 // console.log(songs)
 loadFromLocalstorage()
@@ -31,6 +33,13 @@ scrollable.style.paddingRight =
   'px' */
 
 play(playing, false)
+
+$(document).bind('keypress', function(e) {
+  if (e.which === 32) {
+    if (state.playing) pause()
+    else play()
+  }
+})
 
 $('#from-youtube').click(function(event) {
   event.preventDefault()
@@ -86,6 +95,7 @@ function play(song = playing, startPlaying = true) {
   if (startPlaying) {
     songElement.play()
     showPause()
+    state.playing = true
   }
 }
 
@@ -94,6 +104,7 @@ function pause() {
     .get(0)
     .pause()
   showPlay()
+  state.playing = false
 }
 
 function titleCase(str) {
