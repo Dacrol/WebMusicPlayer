@@ -13,8 +13,9 @@ let songs = [
   }
 ]
 
-songs = [...songs, ...songs, ...songs]
+// songs = [...songs, ...songs, ...songs]
 // console.log(songs)
+loadFromLocalstorage()
 
 songs.forEach(addToPlaylist)
 
@@ -75,10 +76,15 @@ function play(song = playing, startPlaying = true) {
   $('.song-title-right').text(songData.title)
   $('.song-artist-right').text(songData.artist)
   updatePlaying(songData)
+  const songElement = $('.audio_' + playing).get(0)
+  songElement.addEventListener('loadedmetadata', function() {
+    console.log(this)
+    $('.time-tracker').text(
+      formatTime(this.currentTime) + ' / ' + formatTime(this.duration)
+    )
+  })
   if (startPlaying) {
-    $('.audio_' + playing)
-      .get(0)
-      .play()
+    songElement.play()
     showPause()
   }
 }
@@ -106,14 +112,14 @@ function updatePlaying(song) {
   $('body').css('background-image', `url('${song.image}')`)
 }
 
-function nextPrev(prev = 1) {
+function nextPrev(direction = 1) {
   stop()
   let index = songs.findIndex(song => song.id === playing)
-  let next = songs[index + prev]
+  let next = songs[index + direction]
   if (next) {
     play(next.id)
   } else {
-    play(prev === 1 ? songs[0].id : songs[songs.length - 1].id)
+    play(direction === 1 ? songs[0].id : songs[songs.length - 1].id)
   }
 }
 
@@ -183,22 +189,50 @@ function addToPlaylist(song) {
       $('.play-button').hide()
       $('.pause-button').show()
     })
-  $('.audio_' + song.id)
-    .get(0)
-    .addEventListener('timeupdate', function(e) {
-      let progress = this.currentTime / this.duration
-      $('.progress-bar')
-        .attr('aria-valuenow', progress)
-        .css('width', Math.round(progress * 100 * 1000) / 1000 + '%')
-      $('.time-tracker').text(
-        formatTime(this.currentTime) + ' / ' + formatTime(this.duration)
-      )
-      // console.log(progress)
-    })
+  const audioElement = $('.audio_' + song.id).get(0)
+  audioElement.addEventListener('timeupdate', function(e) {
+    let progress = this.currentTime / this.duration
+    $('.progress-bar')
+      .attr('aria-valuenow', progress)
+      .css('width', Math.round(progress * 100 * 1000) / 1000 + '%')
+    $('.time-tracker').text(
+      formatTime(this.currentTime) + ' / ' + formatTime(this.duration)
+    )
+    // console.log(progress)
+  })
+  audioElement.addEventListener('ended', function(e) {
+    nextPrev()
+  })
 }
 
 async function addFromYoutube(id) {
-  let audio = await getAudio(id)
-  songs.push(audio)
-  addToPlaylist(audio)
+  try {
+    let audio = await getAudio(id)
+    songs.push(audio)
+    addToPlaylist(audio)
+    saveToLocalstorage()
+  } catch (error) {
+    console.warn('YouTube ID has no associated audio stream')
+  }
+}
+
+function saveToLocalstorage() {
+  const storage = window.localStorage
+  const data = JSON.stringify(songs)
+  if (data && data.length > 0) {
+    storage.setItem('playlist', data)
+  }
+}
+
+function loadFromLocalstorage() {
+  const storage = window.localStorage
+  const data = JSON.parse(storage.getItem('playlist'))
+  if (data && data.length > 0) {
+    songs = data
+  }
+}
+
+function clearStorage() {
+  const storage = window.localStorage
+  storage.removeItem('playlist')
 }
