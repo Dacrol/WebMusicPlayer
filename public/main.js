@@ -13,8 +13,9 @@ let songs = [
   }
 ]
 
-songs = [...songs, ...songs, ...songs]
+// songs = [...songs, ...songs, ...songs]
 // console.log(songs)
+loadFromLocalstorage()
 
 songs.forEach(addToPlaylist)
 
@@ -205,7 +206,33 @@ function addToPlaylist(song) {
 }
 
 async function addFromYoutube(id) {
-  let audio = await getAudio(id)
-  songs.push(audio)
-  addToPlaylist(audio)
+  try {
+    let audio = await getAudio(id)
+    songs.push(audio)
+    addToPlaylist(audio)
+    saveToLocalstorage()
+  } catch (error) {
+    console.warn('YouTube ID has no associated audio stream')
+  }
+}
+
+function saveToLocalstorage() {
+  const storage = window.localStorage
+  const data = JSON.stringify(songs)
+  if (data && data.length > 0) {
+    storage.setItem('playlist', data)
+  }
+}
+
+function loadFromLocalstorage() {
+  const storage = window.localStorage
+  const data = JSON.parse(storage.getItem('playlist'))
+  if (data && data.length > 0) {
+    songs = data
+  }
+}
+
+function clearStorage() {
+  const storage = window.localStorage
+  storage.removeItem('playlist')
 }
