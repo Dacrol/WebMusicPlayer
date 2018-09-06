@@ -186,6 +186,9 @@ function addToPlaylist(song) {
   <small class="text-muted">${song.artist || ''}</small>
   </div>
   </div>
+  <div class="remove-icon mr-3">
+    <i class="fas fa-minus-circle"></i>
+  </div>
   <div class="play-icon">
     <i class="fas fa-play-circle" aria-hidden="true"></i>
   </div>

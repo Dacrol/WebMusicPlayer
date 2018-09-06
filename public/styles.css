@@ -99,7 +99,7 @@ body::after {
     transition: color 0.2s linear;
 }
 
-.song:hover {
+.song i:hover, .song div:hover {
     color: #ffffff;
 }
 
