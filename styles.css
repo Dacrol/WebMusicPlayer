@@ -57,6 +57,17 @@
     }
 }
 
+@media (max-height: 540px) {
+    .song-cover-large-container {
+        height: 100%;
+    }
+    .song-cover-large {
+        padding-bottom: 0;
+        height: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
 .song-cover-large img {
     object-position: center;
     object-fit: cover;
