@@ -186,6 +186,9 @@ function addToPlaylist(song) {
   <small class="text-muted">${song.artist || ''}</small>
   </div>
   </div>
+  <div class="remove-icon mr-3">
+    <i class="fas fa-minus-circle"></i>
+  </div>
   <div class="play-icon">
     <i class="fas fa-play-circle" aria-hidden="true"></i>
   </div>
@@ -199,6 +202,10 @@ function addToPlaylist(song) {
       // console.log(song)
       $('.play-button').hide()
       $('.pause-button').show()
+    })
+    .on('click', '.remove-icon', function(e) {
+      e.stopPropagation()
+      removeSong(song.id)
     })
   const audioElement = $('.audio_' + song.id).get(0)
   audioElement.addEventListener('timeupdate', function(e) {
@@ -246,4 +253,15 @@ function loadFromLocalstorage() {
 function clearStorage() {
   const storage = window.localStorage
   storage.removeItem('playlist')
+}
+
+function removeSong(songId) {
+  const songIndex = songs.findIndex(data => data.id === songId)
+  if (songIndex > -1) {
+    songs.splice(songIndex, 1)
+    $('.songs')
+      .find(`[data-song="${songId}"]`)
+      .remove()
+    saveToLocalstorage()
+  }
 }
