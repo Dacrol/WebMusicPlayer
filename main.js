@@ -43,7 +43,7 @@ $(document).bind('keypress', function(e) {
 
 $('.from-youtube').click(function(event) {
   event.preventDefault()
-  let id = window.prompt('Enter ID')
+  let id = window.prompt('Enter YouTube ID')
   // console.log(id)
   addFromYoutube(id)
 })
