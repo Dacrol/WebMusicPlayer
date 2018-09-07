@@ -194,8 +194,9 @@ function addToPlaylist(song) {
   </div>
   <audio class="audio_${song.id}" src="${song.file}"></audio>
 </div>`)
-    
-songElement.appendTo('.songs')
+
+  songElement
+    .appendTo('.songs')
     .click(function(e) {
       let song = $(this).attr('data-song')
       reset()
