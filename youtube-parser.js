@@ -20,6 +20,7 @@ async function getAudio(id) {
     .split(',')
     .map(parseUri)
   // console.log(streams);
+  // console.log(streams.map(stream => stream.type));
   let youtubeTitle = data.title.replace(/\+/g, ' ').split(' - ')
   let image = data.thumbnail_url.replace('default', 'hqdefault')
   let audio = streams.find(stream => stream.type.startsWith('audio/'))

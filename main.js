@@ -172,7 +172,7 @@ function showPause() {
 
 function addToPlaylist(song) {
   if (!song.id) song.id = song.file.replace('.', '')
-  $(`<div class="song d-flex justify-content-center align-items-center" data-song="${
+  const songElement = $(`<div class="song d-flex justify-content-center align-items-center" data-song="${
     song.id
   }">
   <div class="song-cover">
@@ -194,6 +194,8 @@ function addToPlaylist(song) {
   </div>
   <audio class="audio_${song.id}" src="${song.file}"></audio>
 </div>`)
+
+  songElement
     .appendTo('.songs')
     .click(function(e) {
       let song = $(this).attr('data-song')
@@ -206,6 +208,7 @@ function addToPlaylist(song) {
     .on('click', '.remove-icon', function(e) {
       e.stopPropagation()
       removeSong(song.id)
+      songElement.remove()
     })
   const audioElement = $('.audio_' + song.id).get(0)
   audioElement.addEventListener('timeupdate', function(e) {
@@ -259,9 +262,9 @@ function removeSong(songId) {
   const songIndex = songs.findIndex(data => data.id === songId)
   if (songIndex > -1) {
     songs.splice(songIndex, 1)
-    $('.songs')
-      .find(`[data-song="${songId}"]`)
-      .remove()
+    // $('.songs')
+    //   .find(`[data-song="${songId}"]`)
+    //   .remove()
     saveToLocalstorage()
   }
 }
