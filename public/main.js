@@ -41,7 +41,7 @@ $(document).bind('keypress', function(e) {
   }
 })
 
-$('#from-youtube').click(function(event) {
+$('.from-youtube').click(function(event) {
   event.preventDefault()
   let id = window.prompt('Enter ID')
   // console.log(id)
