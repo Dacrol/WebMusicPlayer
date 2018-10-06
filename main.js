@@ -34,6 +34,13 @@ scrollable.style.paddingRight =
 
 play(playing, false)
 
+$('.shuffle, .repeat').click(function() {
+  $(this).popover('show')
+  setTimeout(() => {
+    $(this).popover('hide')
+  }, 1000);
+})
+
 $(document).bind('keypress', function(e) {
   if (e.which === 32) {
     if (state.playing) pause()
