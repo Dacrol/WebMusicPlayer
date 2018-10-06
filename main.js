@@ -34,7 +34,7 @@ scrollable.style.paddingRight =
 
 play(playing, false)
 
-$('.shuffle, .repeat').click(function() {
+$('.shuffle, .repeat, .favorite, .playlist-add').click(function() {
   $(this).popover('show')
   setTimeout(() => {
     $(this).popover('hide')
